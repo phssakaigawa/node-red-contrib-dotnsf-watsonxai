@@ -8,9 +8,9 @@ Query-able node based on watsonx.ai
 
 ## Pre-requisite
 
-You need to get (free)account in [Open AI API beta](https://beta.openai.com/) first.
+You need to get account in [IBM Cloud](https://cloud.ibm.com/) first.
 
-You also have to prepare API Key [here](https://beta.openai.com/account/api-keys).
+You also have to prepare **IAM API Key** of your IBM Cloud account. You also need **Project ID** for your project of IBM Watson Studio and IBM Watson Machine Learning, lite(free) plan would be OK.
 
 At last, you would prepare [Node-RED](https://nodered.org/).
 
