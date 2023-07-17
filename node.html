@@ -1,0 +1,37 @@
+<script type="text/javascript">
+  RED.nodes.registerType( 'watsonx.ai', {
+    category: 'function',
+    color: '#AAAA66',
+    defaults: {
+      name: { value: '' },
+      apikey: { value: '' }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "font-awesome/fa-graduation-cap",
+    label: function(){
+      return this.name || "watsonx.ai";
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="watsonx.ai">
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name"/>
+    <br/>
+    <label for="node-input-apikey"><i class="icon-tag"></i> API Key</label>
+    <input type="text" id="node-input-apikey" placeholder="API Key"/>
+    <br/>
+    <label for="node-input-project_id"><i class="icon-tag"></i> Project ID</label>
+    <input type="text" id="node-input-project_id" placeholder="Project ID"/>
+    <br/>
+    <label for="node-input-model_id"><i class="icon-tag"></i> Model ID</label>
+    <input type="text" id="node-input-model_id" value="ibm/mpt-7b-instruct2" placeholder="Model ID"/>
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="GPT 3.5">
+  <p>GPT 3.5 based query node.</p>
+  <p>You need to edit "API Key" field with your own API Key, which can be generated <a target="_blank" href="https://beta.openai.com/account/api-keys">here</a>.</p>
+</script>
