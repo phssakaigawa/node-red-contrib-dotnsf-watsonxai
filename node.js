@@ -95,6 +95,7 @@ module.exports = function( RED ){
       var apikey = config.apikey;
       var model_id = config.model_id;
       var project_id = config.project_id;
+      var only_firstline = config.only_firstline;
 
       if( !apikey ){ apikey = env_apikey; }
       if( !project_id ){ project_id = env_project_id; }
@@ -108,12 +109,12 @@ module.exports = function( RED ){
             var results = result.results;
             if( results && results[0] && results[0].generated_text ){
               var generated_text = results[0].generated_text;
-              /* この整形は必要？
-              var tmp = generated_text.split( '\\n\\n' );
-              if( tmp.length > 1 ){
-                generated_text = tmp[0];
+              if( only_firstline ){
+                var tmp = generated_text.split( '\\n\\n' );
+                if( tmp.length > 1 ){
+                  generated_text = tmp[0];
+                }
               }
-              */
 
               msg.payload = generated_text;
               node.status( {} );

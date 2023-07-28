@@ -6,7 +6,8 @@
       name: { value: '' },
       apikey: { value: '' },
       project_id: { value: '' },
-      model_id: { value: 'ibm/mpt-7b-instruct2' }
+      model_id: { value: 'ibm/mpt-7b-instruct2' },
+      only_firstline: { value: false }
     },
     inputs: 1,
     outputs: 1,
@@ -30,6 +31,9 @@
     <br/>
     <label for="node-input-model_id"><i class="icon-tag"></i> Model ID</label>
     <input type="text" id="node-input-model_id" placeholder="Model ID"/>
+    <br/>
+    <input type="checkbox" id="node-input-only_firstline"/>
+     Only first line
   </div>
 </script>
 
