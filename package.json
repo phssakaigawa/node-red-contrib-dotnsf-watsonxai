@@ -1,6 +1,6 @@
 {
     "name": "node-red-contrib-dotnsf-watsonxai",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "node-red": {
         "nodes": {
             "watsonxai": "node.js"
