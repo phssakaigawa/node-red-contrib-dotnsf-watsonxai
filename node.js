@@ -1,5 +1,4 @@
 var axiosBase = require( 'axios' );
-require( 'dotenv' ).config();
 
 var env_apikey = 'APIKEY' in process.env ? process.env.APIKEY : ''; 
 var env_project_id = 'PROJECT_ID' in process.env ? process.env.PROJECT_ID : ''; 
@@ -109,10 +108,6 @@ module.exports = function( RED ){
             var results = result.results;
             if( results && results[0] && results[0].generated_text ){
               var generated_text = results[0].generated_text;
-              var tmp = generated_text.split( '\\n' );
-              if( tmp.length > 1 ){
-                generated_text = tmp[0];
-              }
 
               msg.payload = generated_text;
               node.status( {} );
