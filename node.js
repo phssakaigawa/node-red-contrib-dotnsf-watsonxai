@@ -1,5 +1,6 @@
 var axiosBase = require( 'axios' );
 
+var env_endpoint  = 'ENDPOINT' in process.env ? process.env.ENDPOINT : 'https://us-south.ml.cloud.ibm.com';
 var env_apikey = 'APIKEY' in process.env ? process.env.APIKEY : ''; 
 var env_project_id = 'PROJECT_ID' in process.env ? process.env.PROJECT_ID : ''; 
 var env_model_id = 'MODEL_ID' in process.env ? process.env.MODEL_ID : 'ibm/mpt-7b-instruct2'; 
@@ -38,12 +39,12 @@ module.exports = function( RED ){
     });
   }
 
-  async function generateText( access_token, project_id, model_id, input, max_new_tokens ){
+  async function generateText( endpoint,access_token, project_id, model_id, input, max_new_tokens ){
     return new Promise( function( resolve, reject ){
-      if( access_token ){
+      if( access_token && endpoint ){
         if( project_id && input && max_new_tokens ){
           var axios = axiosBase.create({
-            baseURL: 'https://us-south.ml.cloud.ibm.com',
+            baseURL: endpoint,
             responseType: 'json',
             headers: {
               'Authorization': 'Bearer ' + access_token,
@@ -61,7 +62,7 @@ module.exports = function( RED ){
               "stop_sequences": [],
               "repetition_penalty": 1
             },
-            'project_id': project_id 
+            'project_id': project_id,
           };
   
           axios.post( '/ml/v1-beta/generation/text?version=2023-05-29', data )
@@ -92,16 +93,18 @@ module.exports = function( RED ){
       node.status( { fill: "green", shape: "dot", text: "..." } );
       var max_new_tokens = 100;
       var text = msg.payload;
+      var endpoint = config.endpoint;
       var apikey = config.apikey;
       var model_id = config.model_id;
       var project_id = config.project_id;
       var only_firstline = config.only_firstline;
 
+      if( !endpoint ){ endpoint = env_endpoint; }
       if( !apikey ){ apikey = env_apikey; }
       if( !project_id ){ project_id = env_project_id; }
       if( !model_id ){ model_id = env_model_id; }
       //console.log( {apikey} );
-      if( apikey && project_id ){
+      if( endpoint && apikey && project_id ){
         var result0 = await getAccessToken( apikey );
         if( result0 && result0.status && result0.access_token ){
           var result = await generateText( result0.access_token, project_id, model_id, text, max_new_tokens );
@@ -135,7 +138,7 @@ module.exports = function( RED ){
           node.send( msg );
         }
       }else{
-        msg.payload = 'API Key and/or Project ID missing.';
+        msg.payload = 'END POINT URL and/or API Key and/or Project ID missing.';
         node.status( {} );
         node.send( msg );
       }

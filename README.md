@@ -23,9 +23,11 @@ At last, you would prepare [Node-RED](https://nodered.org/).
 
 3. Open properties box. You need to edit **API Key** field with your API Key.
 
-4. You also need to edit **Project ID** field with your Project ID.
+4. You also need to edit **END POINT URL** field with your END POINT URL.
 
-5. Connect nodes. You have to input query text as **msg.payload** into watsonx.ai node. Then watsonx.ai node would output generated text in its **msg.payload**.
+5. You also need to edit **Project ID** field with your Project ID.
+
+6. Connect nodes. You have to input query text as **msg.payload** into watsonx.ai node. Then watsonx.ai node would output generated text in its **msg.payload**.
 
 
 ## Licensing

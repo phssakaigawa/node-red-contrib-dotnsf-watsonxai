@@ -4,6 +4,7 @@
     color: '#cccc99',
     defaults: {
       name: { value: '' },
+      endpoint: { value: 'https://us-south.ml.cloud.ibm.com' },
       apikey: { value: '' },
       project_id: { value: '' },
       model_id: { value: 'ibm/mpt-7b-instruct2' },
@@ -22,6 +23,9 @@
   <div class="form-row">
     <label for="node-input-name"><i class="icon-tag"></i> Name</label>
     <input type="text" id="node-input-name" placeholder="Name"/>
+    <br/>
+    <label for="node-input-endpoint"><i class="icon-tag"></i> END POINT URL</label>
+    <input type="text" id="node-input-endpoint" placeholder="END POINT URL"/>
     <br/>
     <label for="node-input-apikey"><i class="icon-tag"></i> API Key</label>
     <input type="text" id="node-input-apikey" placeholder="API Key"/>
